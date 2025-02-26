@@ -25,8 +25,9 @@ public class CreateKeyboard : IEndpoint
     private static Ok<Response> Handle(Request request, IDatabase db)
     {
         var keyboard = new Keyboard();
-
-        keyboard.Id = db.GetProductId();
+        keyboard.Id = db.Keyboards.Any()
+            ? db.Keyboards.Max(x => x.Id) + 1
+            : 1;
         keyboard.Name = request.Name;
         keyboard.Manufacturer = request.Manufacturer;
         keyboard.ManufacturersId = request.ManufacturerId;
@@ -40,10 +41,9 @@ public class CreateKeyboard : IEndpoint
             keyboard.HasRGB = (bool)request.HasRGB;
         if (request.HasBluetooth is not null)
             keyboard.HasBluetooth = (bool)request.HasBluetooth;
-        db.Keyboards.Add( keyboard );
+        db.Keyboards.Add(keyboard);
 
         return TypedResults.Ok(new Response(keyboard.Id));
-
 
     }
 
