@@ -23,10 +23,11 @@ public class GetKeyboards : IEndpoint
         bool HasRGB
         );
 
-    private static Response Handle([AsParameters] Request request, IDatabase db)
+    private static IResult Handle([AsParameters] Request request, IDatabase db)
     {
         var keyboard = db.Keyboards
             .FirstOrDefault(item => item.Id == request.Id);
+        if (keyboard is null) return Results.NotFound();
 
         var response = new Response(
                Id: keyboard.Id,
@@ -43,7 +44,7 @@ public class GetKeyboards : IEndpoint
                HasRGB: keyboard.HasRGB
                );
 
-        return response;
+        return Results.Ok(response);
     }
 
 
