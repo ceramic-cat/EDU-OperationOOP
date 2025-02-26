@@ -5,12 +5,38 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace OperationOOP.Core.Models;
-public class Keyboard : PurchasableProduct
+public class Keyboard : PurchasableProduct, IPurchasable
 {
-    public bool HasRGB { get; set; } = false;
+    public KeyboardFormfactor? KeyboardFormfactor { get; set; }
+    public KeyCapProfile? KeyCapProfile { get; set; }
+    public KeyCapMaterial? KeyCapMaterial { get; set; }
+    public KeySwitch? KeySwitch { get; set; }
     public bool HasBluetooth { get; set; } = false;
-    public (string Designation, int AmountOfKeys) FormFactor {  get; set; }
-    public KeyCap KeyCapType { get; set; }
-    public KeySwitch KeySwitch {  get; set; }
+    public bool HasRGB { get; set; } = false;
+}
 
+public enum KeyboardFormfactor
+{
+    Full,
+    TKL,
+    Compact
+}
+
+public enum KeyCapProfile
+{
+    Cherry,
+    OEM,
+    XDA,
+    DSA
+}
+public enum KeyCapMaterial
+{
+    ABS,
+    PBT
+}
+public enum KeySwitch
+{
+    Linear,
+    Tactile,
+    Clicky
 }
