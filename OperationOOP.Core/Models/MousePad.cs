@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace OperationOOP.Core.Models;
-public class MousePad : PurchasableProduct
+public class Mousepad : PurchasableProduct
 {
     public int Width { get; set; }
     public int Height { get; set; }
 
-    public string Color { get; set; } = "Black";
+    public string Color { get; set; }
 
 }
