@@ -9,7 +9,7 @@ public class CreateKeyboard : IEndpoint
     public record Request(
         string Name,
         string Manufacturer,
-        int ManufacturerId,
+        int ManufacturersId,
         int InStock,
         decimal Price,
         KeyboardFormfactor? Formfactor,
@@ -30,7 +30,7 @@ public class CreateKeyboard : IEndpoint
             : 1;
         keyboard.Name = request.Name;
         keyboard.Manufacturer = request.Manufacturer;
-        keyboard.ManufacturersId = request.ManufacturerId;
+        keyboard.ManufacturersId = request.ManufacturersId;
         keyboard.InStock = request.InStock;
         keyboard.Price = request.Price;
         keyboard.KeyboardFormfactor = request.Formfactor;

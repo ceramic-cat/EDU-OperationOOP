@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace OperationOOP.Core.Models;
-public class Keyboard : PurchasableProduct, IPurchasable
+public class Keyboard : PurchasableProduct
 {
     public KeyboardFormfactor? KeyboardFormfactor { get; set; }
     public KeyCapProfile? KeyCapProfile { get; set; }
