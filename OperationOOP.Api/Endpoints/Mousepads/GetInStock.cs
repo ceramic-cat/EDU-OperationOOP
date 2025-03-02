@@ -3,6 +3,7 @@ public class GetAvailableMousepads : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/mousepads/available", Handle)
+        .WithTags("Mousepads")
         .WithSummary("Mousepads with at least one in stock");
 
     public record Response(

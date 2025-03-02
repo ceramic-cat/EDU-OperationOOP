@@ -4,7 +4,8 @@ public class GetAvailableKeyboards : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/keyboards/available", Handle)
-        .WithSummary("Keyboards with at least one in stock");
+        .WithTags("Keyboards")
+        .WithSummary("Keyboards");
 
 
     public record Response(

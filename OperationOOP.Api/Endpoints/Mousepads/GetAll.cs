@@ -3,6 +3,7 @@ public class GetAllMousepads : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/mousepads", Handle)
+        .WithTags("Mousepads")
         .WithSummary("Get all Mousepads");
 
 

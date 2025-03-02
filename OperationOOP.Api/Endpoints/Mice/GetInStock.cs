@@ -3,6 +3,7 @@ public class GetAvailableMice : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/mice/available", Handle)
+        .WithTags("Mice")
         .WithSummary("Computer Mice with at least one in stock");
 
     public record Response(

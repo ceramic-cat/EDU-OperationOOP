@@ -4,6 +4,7 @@ public class CreateKeyboard : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapPost("/keyboards", Handle)
+        .WithTags("Keyboards")
         .WithSummary("Keyboards");
 
     public record Request(

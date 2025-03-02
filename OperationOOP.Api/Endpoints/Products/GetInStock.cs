@@ -4,6 +4,7 @@ public class GetAvailableProducts : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/products/available", Handle)
+        .WithTags("Products")
         .WithSummary("Products with at least one in stock");
 
 
@@ -13,7 +14,6 @@ public class GetAvailableProducts : IEndpoint
         string Manufacturer,
         decimal Price,
         int InStock);
-
 
     private static List<Response> Handle(ProductContext db)
     {

@@ -4,6 +4,7 @@ public class GetKeyboards : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/keyboards/{id}", Handle)
+        .WithTags("Keyboards")
         .WithSummary("Keyboards");
 
     public record Request(int Id);
@@ -28,7 +29,7 @@ public class GetKeyboards : IEndpoint
         var keyboard = db.PurchasableProducts
             .OfType<Keyboard>()
             .FirstOrDefault(item => item.Id == request.Id);
-        if (keyboard is null) 
+        if (keyboard is null)
             return Results.NotFound();
 
         var response = new Response(

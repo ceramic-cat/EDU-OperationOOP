@@ -1,8 +1,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using OperationOOP.Api.Endpoints;
 using OperationOOP.Core.Data;
+using System.Reflection;
 
 namespace OperationOOP.Api
 {
@@ -17,14 +19,21 @@ namespace OperationOOP.Api
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddDbContext<ProductContext>(options => options.UseInMemoryDatabase("ProductsDb"));
             builder.Services.AddSwaggerGen(options =>
             {
+                options.SwaggerDoc("v1", new OpenApiInfo 
+                { 
+                    Title = "Electronics store", 
+                    Version ="v1", 
+                    Description ="A API for an electronics store" 
+                });
                 options.CustomSchemaIds(type => type.FullName?.Replace('+', '.'));
                 options.InferSecuritySchemes();
-            });
 
-            //builder.Services.AddSingleton<IDatabase, Database>();
-            builder.Services.AddDbContext<ProductContext>(options => options.UseInMemoryDatabase("ProductsDb"));
+                options.DocumentFilter<TagOrderDocumentFilter>();
+
+            });
 
             var app = builder.Build();
 

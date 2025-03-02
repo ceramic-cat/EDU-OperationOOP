@@ -7,6 +7,7 @@ public class GetAllProducts : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/products", Handle)
+        .WithTags("Products")
         .WithSummary("Get all products");
 
 

@@ -5,6 +5,7 @@ public class GetMousepads : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/mousepads/{id}", Handle)
+        .WithTags("Mousepads")
         .WithSummary("Get Mousepad");
 
     public record Request(int Id);

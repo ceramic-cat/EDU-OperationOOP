@@ -4,6 +4,7 @@ public class CreateMousepad : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapPost("/mousepads", Handle)
+        .WithTags("Mousepads")
         .WithSummary("Mousepads");
 
     public record Request(

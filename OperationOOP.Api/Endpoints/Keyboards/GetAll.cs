@@ -7,6 +7,7 @@ public class GetAllKeyboards : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/keyboards", Handle)
+        .WithTags("Keyboards")
         .WithSummary("Keyboards");
 
 

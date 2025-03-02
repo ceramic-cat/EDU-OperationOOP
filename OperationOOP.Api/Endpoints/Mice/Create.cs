@@ -4,6 +4,7 @@ public class CreateMouse : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapPost("/mice", Handle)
+        .WithTags("Mice")
         .WithSummary("Computer Mice");
 
     public record Request(

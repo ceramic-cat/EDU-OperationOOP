@@ -3,6 +3,7 @@ public class GetAllMice : IEndpoint
 {
     public static void MapEndpoint(IEndpointRouteBuilder app) => app
         .MapGet("/mice", Handle)
+        .WithTags("Mice")
         .WithSummary("Get all Mice");
 
 
