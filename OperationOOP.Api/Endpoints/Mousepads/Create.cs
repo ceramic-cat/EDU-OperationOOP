@@ -19,11 +19,14 @@ public class CreateMousepad : IEndpoint
 
     public record Response(int id);
 
-    private static Ok<Response> Handle(Request request, IDatabase db)
+    private static Ok<Response> Handle(Request request, ProductContext db)
     {
         var mousepad = new Mousepad();
-        mousepad.Id = db.Mousepads.Any()
-            ? db.Mousepads.Max(x => x.Id) + 1
+        mousepad.Id = db.PurchasableProducts
+            .OfType<Mousepad>().Any()
+            ? db.PurchasableProducts
+                .OfType<Mousepad>()
+                .Max(x => x.Id) + 1
             : 1;
         mousepad.Name = request.Name;
         mousepad.Manufacturer = request.Manufacturer;
@@ -34,7 +37,8 @@ public class CreateMousepad : IEndpoint
         mousepad.Height = request.Height;
         mousepad.Color = request.Color;
 
-        db.Mousepads.Add(mousepad);
+        db.Add(mousepad);
+        db.SaveChanges();
 
         return TypedResults.Ok(new Response(mousepad.Id));
 

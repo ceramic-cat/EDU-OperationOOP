@@ -19,11 +19,11 @@ public class CreateMouse : IEndpoint
 
     public record Response(int id);
 
-    private static Ok<Response> Handle(Request request, IDatabase db)
+    private static Ok<Response> Handle(Request request, ProductContext db)
     {
         var mouse = new Mouse();
-        mouse.Id = db.Mice.Any()
-            ? db.Mice.Max(x => x.Id) + 1
+        mouse.Id = db.PurchasableProducts.OfType<Mouse>().Any()
+            ? db.PurchasableProducts.OfType<Mouse>().Max(x => x.Id) + 1
             : 1;
         mouse.Name = request.Name;
         mouse.Manufacturer = request.Manufacturer;
@@ -34,8 +34,8 @@ public class CreateMouse : IEndpoint
         mouse.IsUsableWithLeftHand = request.IsUsableWithLeftHand;
         mouse.HasBluetooth = request.HasBluetooth;
 
-        db.Mice.Add(mouse);
-
+        db.Add(mouse);
+        db.SaveChanges();
         return TypedResults.Ok(new Response(mouse.Id));
 
     }

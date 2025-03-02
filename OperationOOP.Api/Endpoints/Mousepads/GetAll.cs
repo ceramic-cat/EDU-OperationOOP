@@ -14,15 +14,15 @@ public class GetAllMousepads : IEndpoint
         int InStock);
 
 
-    private static List<Response> Handle(IDatabase db)
+    private static List<Response> Handle(ProductContext db)
     {
-        return db.Mousepads
+        return db.PurchasableProducts.OfType<Mousepad>()
             .Select(item => new Response(
-                Id: item.Id,
-                Name: item.Name,
-                Manufacturer: item.Manufacturer,
-                Price: item.Price,
-                InStock: item.InStock
+                item.Id,
+                item.Name,
+                item.Manufacturer,
+                item.Price,
+                item.InStock
                 ))
             .ToList();
     }

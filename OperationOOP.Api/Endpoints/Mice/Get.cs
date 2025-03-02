@@ -18,9 +18,9 @@ public class GetMice : IEndpoint
         bool HasBluetooth
         );
 
-    private static IResult Handle([AsParameters] Request request, IDatabase db)
+    private static IResult Handle([AsParameters] Request request, ProductContext db)
     {
-        var mouse = db.Mice
+        var mouse = db.PurchasableProducts.OfType<Mouse>()
             .FirstOrDefault(item => item.Id == request.Id);
         if (mouse is null) return Results.NotFound();
 
@@ -31,7 +31,7 @@ public class GetMice : IEndpoint
                InStock: mouse.InStock,
                Price: mouse.Price,
                MotionDetection: mouse.MotionDetection,
-               IsUsableWithLeftHand : mouse.IsUsableWithLeftHand,
+               IsUsableWithLeftHand: mouse.IsUsableWithLeftHand,
                HasBluetooth: mouse.HasBluetooth
                );
 

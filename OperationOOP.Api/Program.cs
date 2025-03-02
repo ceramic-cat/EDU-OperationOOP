@@ -1,4 +1,5 @@
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using OperationOOP.Api.Endpoints;
 using OperationOOP.Core.Data;
@@ -22,7 +23,8 @@ namespace OperationOOP.Api
                 options.InferSecuritySchemes();
             });
 
-            builder.Services.AddSingleton<IDatabase, Database>();
+            //builder.Services.AddSingleton<IDatabase, Database>();
+            builder.Services.AddDbContext<ProductContext>(options => options.UseInMemoryDatabase("ProductsDb"));
 
             var app = builder.Build();
 

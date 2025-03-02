@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
+
 namespace OperationOOP.Api.Endpoints.Keyboards;
 
 public class GetAllKeyboards : IEndpoint
@@ -16,16 +18,16 @@ public class GetAllKeyboards : IEndpoint
         int InStock);
 
 
-    private static List<Response> Handle(IDatabase db)
+    private static List<Response> Handle(ProductContext db)
     {
-        return db.Keyboards
+        return db.PurchasableProducts
+            .OfType<Keyboard>()
             .Select(item => new Response(
-                Id: item.Id,
-                Name: item.Name,
-                Manufacturer: item.Manufacturer,
-                Price: item.Price,
-                InStock: item.InStock
-                ))
+                item.Id,
+                item.Name,
+                item.Manufacturer,
+                item.Price,
+                item.InStock))
             .ToList();
     }
 }

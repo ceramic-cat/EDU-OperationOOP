@@ -23,11 +23,13 @@ public class GetKeyboards : IEndpoint
         bool HasRGB
         );
 
-    private static IResult Handle([AsParameters] Request request, IDatabase db)
+    private static IResult Handle([AsParameters] Request request, ProductContext db)
     {
-        var keyboard = db.Keyboards
+        var keyboard = db.PurchasableProducts
+            .OfType<Keyboard>()
             .FirstOrDefault(item => item.Id == request.Id);
-        if (keyboard is null) return Results.NotFound();
+        if (keyboard is null) 
+            return Results.NotFound();
 
         var response = new Response(
                Id: keyboard.Id,

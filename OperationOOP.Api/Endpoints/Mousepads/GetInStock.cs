@@ -12,16 +12,16 @@ public class GetAvailableMousepads : IEndpoint
         decimal Price,
         int InStock);
 
-    private static List<Response> Handle(IDatabase db)
+    private static List<Response> Handle(ProductContext db)
     {
-        return db.Mousepads
+        return db.PurchasableProducts.OfType<Mousepad>()
             .Where(item => item.InStock > 0)
             .Select(item => new Response(
-                Id: item.Id,
-                Name: item.Name,
-                Manufacturer: item.Manufacturer,
-                Price: item.Price,
-                InStock: item.InStock
+                item.Id,
+                item.Name,
+                item.Manufacturer,
+                item.Price,
+                item.InStock
                 ))
             .ToList();
     }

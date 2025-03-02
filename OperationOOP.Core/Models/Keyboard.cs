@@ -11,8 +11,8 @@ public class Keyboard : PurchasableProduct
     public KeyCapProfile? KeyCapProfile { get; set; }
     public KeyCapMaterial? KeyCapMaterial { get; set; }
     public KeySwitch? KeySwitch { get; set; }
-    public bool HasBluetooth { get; set; } = false;
-    public bool HasRGB { get; set; } = false;
+    public bool HasBluetooth { get; set; }
+    public bool HasRGB { get; set; }
 }
 
 public enum KeyboardFormfactor
