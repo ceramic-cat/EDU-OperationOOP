@@ -22,8 +22,8 @@ public class CreateMouse : IEndpoint
     private static Ok<Response> Handle(Request request, ProductContext db)
     {
         var mouse = new Mouse();
-        mouse.Id = db.PurchasableProducts.OfType<Mouse>().Any()
-            ? db.PurchasableProducts.OfType<Mouse>().Max(x => x.Id) + 1
+        mouse.Id = db.PurchasableProducts.Any()
+            ? db.PurchasableProducts.Max(x => x.Id) + 1
             : 1;
         mouse.Name = request.Name;
         mouse.Manufacturer = request.Manufacturer;

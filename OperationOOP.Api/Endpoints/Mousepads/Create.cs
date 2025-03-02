@@ -22,11 +22,8 @@ public class CreateMousepad : IEndpoint
     private static Ok<Response> Handle(Request request, ProductContext db)
     {
         var mousepad = new Mousepad();
-        mousepad.Id = db.PurchasableProducts
-            .OfType<Mousepad>().Any()
-            ? db.PurchasableProducts
-                .OfType<Mousepad>()
-                .Max(x => x.Id) + 1
+        mousepad.Id = db.PurchasableProducts.Any()
+            ? db.PurchasableProducts.Max(x => x.Id) + 1
             : 1;
         mousepad.Name = request.Name;
         mousepad.Manufacturer = request.Manufacturer;

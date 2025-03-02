@@ -25,8 +25,8 @@ public class CreateKeyboard : IEndpoint
     private static Ok<Response> Handle(Request request, ProductContext db)
     {
         var keyboard = new Keyboard();
-        keyboard.Id = db.PurchasableProducts.OfType<Keyboard>().Any()
-            ? db.PurchasableProducts.OfType<Keyboard>().Max(x => x.Id) + 1
+        keyboard.Id = db.PurchasableProducts.Any()
+            ? db.PurchasableProducts.Max(x => x.Id) + 1
             : 1;
 
         keyboard.Name = request.Name;
