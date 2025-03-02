@@ -30,7 +30,7 @@ namespace OperationOOP.Api
                 });
                 options.CustomSchemaIds(type => type.FullName?.Replace('+', '.'));
                 options.InferSecuritySchemes();
-
+                options.DocumentFilter<RemoveSchemasDocumentFilter>();
                 options.DocumentFilter<TagOrderDocumentFilter>();
 
             });
@@ -41,7 +41,10 @@ namespace OperationOOP.Api
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    c.DefaultModelExpandDepth(-1);
+                });
             }
 
             app.UseHttpsRedirection();
