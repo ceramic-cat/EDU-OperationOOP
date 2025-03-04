@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using OperationOOP.Api.Endpoints;
-using OperationOOP.Core.Data;
 using System.Reflection;
 
 namespace OperationOOP.Api
