@@ -20,7 +20,7 @@ public class CreateMouse : IEndpoint
 
     public record Response(int id);
 
-    private static Ok<Response> Handle(Request request, ProductContext db)
+    private static Ok<Response> Handle(Request request, PurchasableProductContext db)
     {
         var mouse = new Mouse();
         mouse.Id = db.PurchasableProducts.Any()

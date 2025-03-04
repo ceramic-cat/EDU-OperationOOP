@@ -15,7 +15,7 @@ public class GetAllMice : IEndpoint
         int InStock);
 
 
-    private static List<Response> Handle(ProductContext db)
+    private static List<Response> Handle(PurchasableProductContext db)
     {
         return db.PurchasableProducts
             .OfType<Mouse>()

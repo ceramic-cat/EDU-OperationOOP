@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 namespace OperationOOP.Api;
 
-public class ProductContext : DbContext
+public class PurchasableProductContext : DbContext
 {
-    public ProductContext(DbContextOptions<ProductContext> options) : base(options) { }
+    public PurchasableProductContext(DbContextOptions<PurchasableProductContext> options) : base(options) { }
     public DbSet<PurchasableProduct> PurchasableProducts { get; set; }
 
 

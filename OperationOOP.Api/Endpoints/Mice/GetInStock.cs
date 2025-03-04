@@ -13,7 +13,7 @@ public class GetAvailableMice : IEndpoint
         decimal Price,
         int InStock);
 
-    private static List<Response> Handle(ProductContext db)
+    private static List<Response> Handle(PurchasableProductContext db)
     {
         return db.PurchasableProducts
             .OfType<Mouse>()

@@ -24,7 +24,7 @@ public class GetKeyboards : IEndpoint
         bool HasRGB
         );
 
-    private static IResult Handle([AsParameters] Request request, ProductContext db)
+    private static IResult Handle([AsParameters] Request request, PurchasableProductContext db)
     {
         var keyboard = db.PurchasableProducts
             .OfType<Keyboard>()

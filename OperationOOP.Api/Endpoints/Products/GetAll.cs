@@ -20,7 +20,7 @@ public class GetAllProducts : IEndpoint
         int InStock);
 
 
-    private static List<Response> Handle(ProductContext db)
+    private static List<Response> Handle(PurchasableProductContext db)
     {
         return db.PurchasableProducts
             .OrderBy(item => item.Id) 

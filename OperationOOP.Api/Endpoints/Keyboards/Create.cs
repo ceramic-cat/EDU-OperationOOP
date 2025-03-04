@@ -23,7 +23,7 @@ public class CreateKeyboard : IEndpoint
 
     public record Response(int id);
 
-    private static Ok<Response> Handle(Request request, ProductContext db)
+    private static Ok<Response> Handle(Request request, PurchasableProductContext db)
     {
         var keyboard = new Keyboard();
         keyboard.Id = db.PurchasableProducts.Any()

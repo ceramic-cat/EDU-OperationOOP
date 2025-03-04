@@ -18,7 +18,7 @@ namespace OperationOOP.Api
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddDbContext<ProductContext>(options => options.UseInMemoryDatabase("ProductsDb"));
+            builder.Services.AddDbContext<PurchasableProductContext>(options => options.UseInMemoryDatabase("ProductsDb"));
             builder.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo 

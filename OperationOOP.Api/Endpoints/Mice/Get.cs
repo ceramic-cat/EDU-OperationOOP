@@ -19,7 +19,7 @@ public class GetMice : IEndpoint
         bool HasBluetooth
         );
 
-    private static IResult Handle([AsParameters] Request request, ProductContext db)
+    private static IResult Handle([AsParameters] Request request, PurchasableProductContext db)
     {
         var mouse = db.PurchasableProducts.OfType<Mouse>()
             .FirstOrDefault(item => item.Id == request.Id);

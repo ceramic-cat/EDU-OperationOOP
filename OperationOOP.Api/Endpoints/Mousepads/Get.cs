@@ -21,7 +21,7 @@ public class GetMousepads : IEndpoint
         string Color = "Black"
         );
 
-    private static IResult Handle([AsParameters] Request request, ProductContext db)
+    private static IResult Handle([AsParameters] Request request, PurchasableProductContext db)
     {
         var mousepad = db.PurchasableProducts.OfType<Mousepad>()
             .FirstOrDefault(item => item.Id == request.Id);
